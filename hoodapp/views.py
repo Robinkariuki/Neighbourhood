@@ -99,16 +99,16 @@ def search_post(request):
         searched_posts = Business.search_business_by_title(search_term)
         message = f'{search_term}'
 
-        return render(request, 'search/search.html', {"message":message, "post":searched_posts})
+        return render(request, 'search.html', {"message":message, "post":searched_posts})
 
     else:
         message = "No search results yet!"
-        return render (request, 'search/search.html', {"message": message})
+        return render (request, 'search.html', {"message": message})
 
 
 def contact(request):
     contacts = ContactInfo.objects.all()
-    return render(request,'hood_app/contact_info.html',{"contacts":contacts})
+    return render(request,'contact_info.html',{"contacts":contacts})
 
 
 def new_post(request):
@@ -122,5 +122,5 @@ def new_post(request):
         return redirect('home')
     else:
         form = PostForm()
-    return render(request,"posts/create_post.html",{"form":form})
+    return render(request,"create_post.html",{"form":form})
 
