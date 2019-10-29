@@ -7,4 +7,5 @@ urlpatterns=[
     url('^$',views.home,name='home'),
     url(r'^profile/$',views.profile,name='profile'),
     url(r'^new_profile/$',views.new_profile,name = 'new_profile'),
+    url(r'^edit/profile/$',views.profile_edit,name = 'edit_profile'),
 ]
