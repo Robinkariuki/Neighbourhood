@@ -6,7 +6,7 @@ from .models import *
 from .forms import *
 # Create your views here.
 
-
+@login_required(login_url='/accounts/login/')
 def home(request):
 
     current_user = request.user    
@@ -23,7 +23,7 @@ def home(request):
 
     return render(request,'index.html',{"all_posts":all_posts,"prof_info":profile,"hoodie":hoodie})
 
-
+@login_required(login_url='/accounts/login/')
 def new_profile(request):
     current_user = request.user
     if request.method == 'POST':
@@ -38,7 +38,7 @@ def new_profile(request):
         form = ProfileForm()
     return render(request, 'new_profile.html', {"form": form})
 
-
+@login_required(login_url='/accounts/login/')
 def profile_edit(request):
     current_user = request.user
     if request.method == 'POST':
@@ -51,7 +51,7 @@ def profile_edit(request):
         form = ProfileForm()
     return render(request,'edit_profile.html',{'form':form})
 
-
+@login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
     business = Business.objects.filter(business_owner = current_user)
@@ -63,6 +63,7 @@ def profile(request):
 
     return render(request,'profile.html',{'profile':prof,'business':business,'posts':posts})
 
+@login_required(login_url='/accounts/login/')
 def new_business(request):
     current_user = request.user
     if request.method == 'POST':
@@ -76,6 +77,7 @@ def new_business(request):
         form = BusinessForm()
     return render(request,"business/business_form.html",{"form":form})
 
+@login_required(login_url='/accounts/login/')
 def business(request):
     current_user = request.user
     try:
@@ -93,6 +95,7 @@ def business(request):
      
     return render(request,'business/business_index.html',{"all_businesses":all_businesses,"profile":profile})
 
+
 def search_post(request):
     if 'post' in request.GET and request.GET ["post"]:
         search_term = request.GET.get("post")
@@ -105,12 +108,12 @@ def search_post(request):
         message = "No search results yet!"
         return render (request, 'search.html', {"message": message})
 
-
+@login_required(login_url='/accounts/login/')
 def contact(request):
     contacts = ContactInfo.objects.all()
     return render(request,'contact_info.html',{"contacts":contacts})
 
-
+@login_required(login_url='/accounts/login/')
 def new_post(request):
     current_user = request.user
     if request.method == 'POST':
