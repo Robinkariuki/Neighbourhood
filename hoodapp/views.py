@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect
 from django.core.exceptions import ObjectDoesNotExist
+from .models import *
+from .forms import *
 # Create your views here.
 def home(request):
 
