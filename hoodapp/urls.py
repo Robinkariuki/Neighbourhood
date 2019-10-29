@@ -13,5 +13,6 @@ urlpatterns=[
     url(r'^search/',views.search_post, name='search_results'),
     url(r'contact-us/$',views.contact, name='contact-us'),
     url(r'new_post/$',views.new_post,name='create-post'),
+]
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
