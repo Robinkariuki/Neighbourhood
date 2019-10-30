@@ -8,20 +8,11 @@ from .forms import *
 
 @login_required(login_url='/accounts/login/')
 def home(request):
+    posts = Post.get_posts()
 
-    current_user = request.user    
-    profile = Profile.objects.filter(prof_user=request.user)
-    hoodie = Neighborhood.objects.all()
-    arr=[]
-    for post in profile:
-        arr.append(post.hood_id.id)
-    if len(arr)>0:
-        id=arr[0]
-        all_posts = Post.objects.filter(hood_post=id)
-    else:
-        all_posts = ""       
 
-    return render(request,'index.html',{"all_posts":all_posts,"prof_info":profile,"hoodie":hoodie})
+    return render(request,'index.html',{"posts":posts})
+
 
 @login_required(login_url='/accounts/login/')
 def new_profile(request):

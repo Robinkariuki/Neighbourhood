@@ -88,6 +88,11 @@ class Post(models.Model):
     def delete_post(self):
         self.delete()
 
+    @classmethod
+    def get_posts(cls):
+        posts = cls.objects.all()
+        return posts
+
 class ContactInfo(models.Model):
     health_department = models.CharField(max_length=200)
     police_department = models.CharField(max_length=200)
