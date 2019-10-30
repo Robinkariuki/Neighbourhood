@@ -32,7 +32,7 @@ class Profile(models.Model):
     hood_id = models.ForeignKey(Neighborhood,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
-        return self.prof_user
+        return self.prof_user.username
 
     def save_profile(self):
         self.save()
